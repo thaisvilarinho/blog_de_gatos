@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+
+  --color-base-blue: hsl(195, 91%, 25%);
+  --color-base-white: hsl(0, 0%, 100%);
+  --color-base-white-lighter: hsla(0, 0%, 100%, 0.2);
+  --color-base-gray-700: hsl(240, 5%, 7%);
+  --color-base-gray-900: hsl(240, 6%, 13%);
+}
+
+html,
+body,
+input {
+  font-family: "Mulish", sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: var(--color-base-white);
+}
+
+#app {
+  height: 100vw;
+
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "aside"
+    "footer";
+}
+
+.container {
+  padding: 1.2rem 2.8rem;
+}
+
+header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: 2.6rem;
+  background-color: var(--color-base-blue);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+header form {
+  flex: 1;
+}
+
+.input-wrapper label {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 1.2rem;
+
+  background-color: var(--color-base-white-lighter);
+
+  border: 0;
+  border-radius: 0.4rem;
+
+  font-size: clamp(1.1rem, 1vw + 0.1rem, 1.6rem);
+  font-weight: 600;
+  line-height: 1rem;
+}
+
+.input-wrapper input::placeholder {
+  opacity: 0.56;
+  color: var(--color-base-white);
+}
+
+.avatar {
+  width: 4.2rem;
+  height: 4.2rem;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+main {
+  grid-area: main;
+}
+
+main img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+
+  margin-bottom: 1.8rem;
+}
+
+main h1,
+h2 {
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-base-gray-900);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+p {
+  color: var(--color-base-gray-700);
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+.button-wrapper {
+  display: flex;
+
+  margin: 0.8rem 0 3rem;
+
+  gap: 1.2rem;
+}
+
+.button-wrapper img {
+  width: 4rem;
+  height: 4rem;
+}
+
+aside {
+  grid-area: aside;
+  margin-top: 2.2rem;
+  margin-bottom: 2.6rem;
+}
+
+.articles {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  margin-top: 3.2rem;
+  margin-bottom: 8rem;
+}
+
+aside p {
+  font-size: 1.4rem;
+}
+
+.item {
+  display: flex;
+
+  gap: 1.6rem;
+}
+
+.item img {
+  width: min(30vw, 15rem); ;
+  height: 8.4rem;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+
+  border-radius: 0.5rem;
+}
+
+footer {
+  grid-area: footer;
+  background-color: var(--color-base-blue);
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+footer p {
+  color: var(--color-base-white);
+  text-align: center;
+  font-weight: 600;
+  line-height: 2rem;
+
+  padding: 1.6rem;
+}
+
+header {
+  --startY: -100%;
+  animation: move 0.2s;
+}
+
+footer {
+  --startY: 100%;
+  animation: move 0.2s;
+}
+
+@media (min-width: 768px) {
+  #app {
+    grid-template-areas:
+      "header header"
+      "main aside"
+      "footer footer";
+  }
+
+  main > .container {
+    padding: 0;
+  }
+
+  main,
+  aside.container {
+    padding: 4.4rem 2rem 10rem;
+  }
+
+  main,
+  aside {
+    margin-top: 4.4rem;
+  }
+
+}
+
+@media (min-width: 1440px) {
+  #app {
+    grid-template-rows: max-content 1fr max-content;
+  }
+  header.container {
+    padding: 1.2rem 11rem;
+  }
+
+  main,
+  aside {
+    margin-top: 4.4rem;
+  }
+
+  main {
+    padding-left: 11rem;
+  }
+
+  aside.container {
+    padding-left: 3.4rem;
+    padding-right: 11rem;
+  }
+
+  .details p {
+    max-width: 22rem;
+  }
+}
+
+@keyframes move {
+  from {
+    transform: translateY(var(--startY));
+  }
+}
